@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: test-database
+    environment:
+      - POSTGRES_USER=vlad
+      - POSTGRES_PASSWORD=vlad
+    ports:
+      - "5432:5432"
