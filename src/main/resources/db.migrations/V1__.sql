@@ -1,5 +1,5 @@
-CREATE TABLE demo1.dogs
+CREATE TABLE dogs
 (   uuid  uuid NOT NULL primary key ,
-    name  VARCHAR(255),
+    name  VARCHAR(20),
     age   INTEGER,
     price INTEGER);

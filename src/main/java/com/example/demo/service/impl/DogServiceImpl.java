@@ -5,6 +5,7 @@ import com.example.demo.entity.DogEntity;
 import com.example.demo.repository.DogRepository;
 import com.example.demo.service.DogService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class DogServiceImpl implements DogService {
@@ -14,7 +15,7 @@ public class DogServiceImpl implements DogService {
     public DogServiceImpl(DogRepository dogRepository) {
         this.dogRepository = dogRepository;
     }
-
+    @Transactional
     public void createNewDog(DogDto dogDto){
         DogEntity dog = DogEntity.builder()
                         .age(dogDto.getAge())
