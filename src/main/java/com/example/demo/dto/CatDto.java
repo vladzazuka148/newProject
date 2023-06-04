@@ -1,6 +1,6 @@
 package com.example.demo.dto;
 
-import com.example.demo.entity.Dog;
+import com.example.demo.entity.Cat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.Value;
 import java.io.Serializable;
 
 /**
- * DTO for {@link Dog}
+ * DTO for {@link Cat}
  */
 @Value
 @Getter
@@ -19,7 +19,7 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
-public class DogDto implements Serializable {
+public class CatDto implements Serializable {
     String name;
     Integer age;
     Integer price;

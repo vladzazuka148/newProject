@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,23 +14,22 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-
 @Builder
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "dogs")
-public class DogEntity {
+@Table(name = "cats")
+public class Cat {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID uuid;
+    @Column(name = "uuid", nullable = false)
+    private UUID id;
 
     private String name;
 
     private Integer age;
 
     private Integer price;
-
 }
