@@ -9,8 +9,6 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
-
 
 @Getter
 @Setter
@@ -18,7 +16,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PayeeRequestDto {
-    private UUID uuid;
     private BigDecimal valueOfMoney;
     private PayeeType payeeType;
     private List<PropertyForPayee> propertyForPayee;
