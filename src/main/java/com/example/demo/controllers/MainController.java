@@ -2,15 +2,24 @@ package com.example.demo.controllers;
 
 import com.example.demo.dto.CatDto;
 import com.example.demo.dto.DogDto;
+import com.example.demo.dto.PayeeRequestDto;
 import com.example.demo.service.CatService;
 import com.example.demo.service.DogService;
+import com.example.demo.service.PayeeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Deque;
 import java.util.List;
+import java.util.Queue;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping
@@ -18,10 +27,12 @@ public class MainController {
 
     private final DogService dogService;
     private final CatService catService;
+    private final PayeeService payeeService;
 
-    public MainController(DogService dogService, CatService catService) {
+    public MainController(DogService dogService, CatService catService, PayeeService payeeService) {
         this.dogService = dogService;
         this.catService = catService;
+        this.payeeService = payeeService;
     }
 
     @PostMapping("dogs")
@@ -51,4 +62,8 @@ public class MainController {
                 .build());
     }
 
+    @PostMapping("unipayee")
+    void createNewUnipayee(@RequestBody PayeeRequestDto payeeRequestDto) {
+        payeeService.createNewPayee(payeeRequestDto);
+    }
 }
