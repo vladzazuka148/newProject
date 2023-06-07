@@ -22,6 +22,9 @@ public class Main {
             }
             stringDeque.offerLast(s);
         }
-        return stringDeque.toString();
+        return stringDeque.toString()
+                .replace(", ","/")
+                .replace("[","")
+                .replace("]","");
     }
 }
