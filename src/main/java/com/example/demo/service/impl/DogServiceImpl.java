@@ -4,6 +4,7 @@ import com.example.demo.dto.DogDto;
 import com.example.demo.entity.Dog;
 import com.example.demo.repository.DogRepository;
 import com.example.demo.service.DogService;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,9 +14,11 @@ import java.util.List;
 public class DogServiceImpl implements DogService {
 
     private final DogRepository dogRepository;
+    private final KafkaTemplate<String,String>kafkaTemplate;
 
-    public DogServiceImpl(DogRepository dogRepository) {
+    public DogServiceImpl(DogRepository dogRepository, KafkaTemplate<String, String> kafkaTemplate) {
         this.dogRepository = dogRepository;
+        this.kafkaTemplate = kafkaTemplate;
     }
     @Transactional
     public void createNewDog(DogDto dogDto){
@@ -25,6 +28,7 @@ public class DogServiceImpl implements DogService {
                         .name(dogDto.getName())
                         .build();
         dogRepository.save(dog);
+        kafkaTemplate.send("my-topic-transaction","dog was created");
     }
 
     @Override
@@ -39,5 +43,6 @@ public class DogServiceImpl implements DogService {
                         .build()).toList();
         return dtoList;
     }
+
 }
 

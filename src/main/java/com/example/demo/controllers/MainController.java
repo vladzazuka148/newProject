@@ -6,6 +6,8 @@ import com.example.demo.dto.PayeeRequestDto;
 import com.example.demo.service.CatService;
 import com.example.demo.service.DogService;
 import com.example.demo.service.PayeeService;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping
+@EnableEurekaServer
 public class MainController {
 
     private final DogService dogService;
@@ -29,10 +32,10 @@ public class MainController {
         this.payeeService = payeeService;
     }
 
-    @PostMapping("dogs")
+    @PostMapping(path = "dogs")
     public void createNewDog(@RequestParam Integer age,
-                                    @RequestParam Integer price,
-                                    @RequestParam String name){
+                                        @RequestParam Integer price,
+                                        @RequestParam String name){
         dogService.createNewDog(DogDto.builder()
                 .age(age)
                 .name(name)
